@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+    <title>FullStack Academey</title>
+</head>
+<h1>FullStack Academey Time Allocation</h1>
+
+<div id="nav-items" class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+        <li><a href="/">CircleMap</a></li>
+        <li><a href="/treemap">TreeMap</a></li>
+    </ul>
+</div>
+
+<style>
+
+    circle {
+        fill: rgb(31, 119, 180);
+        fill-opacity: .25;
+        stroke: rgb(31, 119, 180);
+        stroke-width: 1px;
+    }
+
+    .leaf circle {
+        fill: #ff7f0e;
+        fill-opacity: 1;
+    }
+
+    text {
+        font: 10px sans-serif;
+        text-anchor: middle;
+    }
+
+</style>
+<svg width="960" height="960"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+    var svg = d3.select("svg"),
+        diameter = +svg.attr("width"),
+        g = svg.append("g").attr("transform", "translate(2,2)"),
+        format = d3.format(",d");
+
+    var pack = d3.pack()
+        .size([diameter - 4, diameter - 4]);
+    var data = {"name": "fullstack",
+        "children": [
+            {"name": "workshop",
+                "children": [
+                    {"name": "Data Structures", "size": 2},
+                    {"name":"Selector.js", "size": 0.5},
+                    {"name":"Sorting.js", "size": 0.5},
+                    {"name":"  Game of Life	", "size": 1},
+                    {"name":"  Node-shell", "size": 0.75},
+                    {"name":" Twitter",
+                        "children": [{"name": "Twitter.js", "size": 1}, {"name":"Twitter.sql", "size": 1}]},
+                    {"name":"  SQL", "size": 0.75},
+                    {"name":"  Intro to Schema Design", "size": 0.25},
+                    {"name":"  Practical Promises", "size": 0.75},
+                    {"name":"  Wikistack",
+                        "children": [{"name": "Wikistack", "size": 1.5}, {"name":"Wikistack Testing", "size": 1}]},
+                    {"name":"  Pledge", "size": 1},
+                    {"name":"  Shoestring", "size": 1},
+                    {"name":"  TripPlanner",
+                        "children": [{"name": "TripPlanner Static UI", "size": 1}, {"name": "TripPlanner Live UI", "size": 1.5}, {"name":"TripPlanner - Persistence", "size": 1.5}]},
+                    {"name":" World Wide Whiteboard", "size": 0.5},
+                    {"name":" Webpack WW", "size": 0.5},
+                    {"name":" Juke",
+                        "children": [{"name": "Juke - React", "size": 1}, {"name": "Juke - React Router", "size": 1}, {"name":"Juke - Forms", "size": 1}]},
+                    {"name":" StackChat",
+                        "children": [
+                            {"name": "StackChat - Redux", "size": 1},
+                            {"name":"StackChat - React Redux", "size": 1}]},
+                    {"name":"  Auther", "size": 1}
+                ]},
+            {"name": "Project Work",
+                "children": [
+                    {"name": "Senior Enrichment", "size": 3},
+                    {"name": "Grace Shopper", "size": 10},
+                    {"name": "Stackathon", "size": 5},
+                    {"name": "Capstone", "size": 18}
+                ]}
+        ]};
+
+    var root = d3.hierarchy(data)
+            .sum(function(d) { return d.size; })
+            .sort(function(a, b) { return b.value - a.value; });
+
+        var node = g.selectAll(".node")
+            .data(pack(root).descendants())
+            .enter().append("g")
+            .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
+            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+        node.append("title")
+            .text(function(d) { return d.data.name + "\n" + format(d.value); });
+
+        node.append("circle")
+            .attr("r", function(d) { return d.r; });
+
+        node.filter(function(d) { return !d.children; }).append("text")
+            .attr("dy", "0.3em")
+            .text(function(d) { return d.data.name.substring(0, d.r / 3); });
+
+
+</script>

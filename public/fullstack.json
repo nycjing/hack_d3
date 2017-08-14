@@ -1,0 +1,38 @@
+{"name": "fullstack",
+  "children": [
+    {"name": "workshop",
+      "children": [ 
+        {"name": "Data Structures", "size": 2},
+        {"name":"Selector.js", "size": 0.5},
+        {"name":"Sorting.js", "size": 0.5},
+        {"name":"  Game of Life	", "size": 1},
+        {"name":"  Node-shell", "size": 0.75},
+        {"name":" Twitter",
+          "children": [{"name": "Twitter.js", "size": 1}, {"name":"Twitter.sql", "size": 1}]},
+        {"name":"  SQL", "size": 0.75},
+        {"name":"  Intro to Schema Design", "size": 0.25},
+        {"name":"  Practical Promises", "size": 0.75},
+        {"name":"  Wikistack",
+          "children": [{"name": "Wikistack", "size": 1.5}, {"name":"Wikistack Testing", "size": 1}]},
+        {"name":"  Pledge", "size": 1},
+        {"name":"  Shoestring", "size": 1},
+        {"name":"  TripPlanner",
+          "children": [{"name": "TripPlanner Static UI", "size": 1}, {"name": "TripPlanner Live UI", "size": 1.5}, {"name":"TripPlanner - Persistence", "size": 1.5}]},
+        {"name":" World Wide Whiteboard", "size": 0.5},
+        {"name":" Webpack WW", "size": 0.5},
+        {"name":" Juke",
+          "children": [{"name": "Juke - React", "size": 1}, {"name": "Juke - React Router", "size": 1}, {"name":"Juke - Forms", "size": 1}]},
+        {"name":" StackChat",
+          "children": [
+            {"name": "StackChat - Redux", "size": 1},
+            {"name":"StackChat - React Redux", "size": 1}]},
+        {"name":"  Auther", "size": 1}
+      ]},
+    {"name": "Project Work",
+      "children": [
+        {"name": "Senior Enrichment", "size": 3},
+        {"name": "Grace Shopper", "size": 10},
+        {"name": "Stackathon", "size": 5},
+        {"name": "Capstone", "size": 18}
+      ]}
+  ]}
